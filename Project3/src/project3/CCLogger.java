@@ -36,7 +36,7 @@ public class CCLogger {
     public void Add(CCNode node){
         int hash = getHash(node.getCCNumber());
         
-        if(search(node.getCCNumber()) == null){
+        if(search(node.getCCNumber()) != null){
             System.out.println("Cannot add duplicates");
         }
         else{
@@ -56,7 +56,7 @@ public class CCLogger {
     public void Credit(long Key, double Amt){
         CCNode temp = search(Key);
         
-        if(Amt < temp.getBalance()){
+        if(temp.getBalance() < Amt){
             System.out.println("Unable to complete operation");
         }
         else{
@@ -69,18 +69,29 @@ public class CCLogger {
     public void Debit(long Key, double Amt){
         CCNode temp = search(Key);
         
-        temp.setBalance(temp.getBalance() + Amt);
-        if(temp.getBalance() > temp.getCLimit()){
-            System.out.println("Warning. Credit limit exceeded");
+        //temp.setBalance(temp.getBalance() + Amt);
+        //if(temp.getBalance() > temp.getCLimit()){
+        //    System.out.println("Warning. Credit limit exceeded");
+        //}
+        
+        if(temp.getBalance() + Amt > temp.getCLimit()){
+            System.out.println("Credit limit exceeded");
         }
+        else{
+            temp.setBalance(temp.getBalance() + Amt);
+        }
+        
         
         log(temp);
     }
     
-    public void log(CCNode node){
-        String log = String.format("Current_Time %s\tCCNumber %s\tCLimit %f\tBalance %f\n", 
+    private void log(CCNode node){
+        /*String log = String.format("%s %s %f %f\n", 
                 (System.currentTimeMillis() / 1000) + "", node.getCCNumber() + "", 
-                node.getCLimit(), node.getBalance());
+                node.getCLimit(), node.getBalance());*/
+        String log = (System.currentTimeMillis() / 1000) + " " + 
+                node.getCCNumber() + " " + node.getCLimit() + " " + 
+                node.getBalance() + "\n";
         node.setLog(node.getLog() + log);
     }
     
@@ -100,7 +111,6 @@ public class CCLogger {
         }
         
         return temp;
-        
     }
     
 }

@@ -14,6 +14,7 @@ public class CCNode {
         setCLimit(CLimit);
         setBalance(Balance);
         setNext(null);
+        setLog("");
     }
 
     public long getCCNumber() {
