@@ -22,8 +22,20 @@ public class CCNode {
     }
 
     public void setCCNumber(long CCNumber)  {
-        if((CCNumber + "").length() == 16){
+        String s = CCNumber + "";
+        if(s.length() == 16){
+            
+            for (char c : s.toCharArray()) {
+                if(!Character.isDigit(c)){
+                    System.out.println("Only numbers allowed");
+                    return;
+                }
+            }
+            
             this.CCNumber = CCNumber;
+        }
+        else{
+            System.out.println("Invalid credit card length");
         }
     }
 
