@@ -8,6 +8,7 @@ public class Tester {
         //CCNode node = new CCNode(4507112832632843l, 0.0, 0.0);
         CCLogger logger = new CCLogger();
         Scanner input = new Scanner(System.in);
+        //System.out.println("1. Add a credit card\n2. Deduct from credit card\n3. Add to credit card\n4. Display log\n");
         
         while(true){
             String[] line = input.nextLine().split(" ");
