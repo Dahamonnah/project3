@@ -49,8 +49,8 @@ public class CCLogger {
             }
 
             size++;
-            log(node);
         }
+        log(node);
     }
     
     public void Credit(long Key, double Amt){
